@@ -1,12 +1,10 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <div class="page-favorite">喜欢</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'Favorite'
 }
 </script>
 
