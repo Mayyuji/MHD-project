@@ -11,10 +11,16 @@
         <div class="header-search"></div>
       </a>
     </header>
-    <Swper :autoplay="2000" :loop="true" @change="changehandel">
-      <SwperItem>1</SwperItem>
-      <SwperItem>2</SwperItem>
-      <SwperItem>3</SwperItem>
+    <Swper
+      :autoplay="3000"
+      :loop="true"
+      @change="changehandel"
+      class="myswiper"
+      v-if="bannerList.length > 0"
+    >
+      <SwperItem v-for="item in bannerList" :key="item.id">
+        <img :src="item.imageurl" :alt="item.name" />
+      </SwperItem>
     </Swper>
   </div>
 </template>
@@ -24,19 +30,33 @@ import { Swper, SwperItem } from '@/components/Swper'
 import { getBanner } from '@/api/cartoon'
 export default {
   name: 'Home',
+  data () {
+    return {
+      bannerList: []
+    }
+  },
   components: {
     Swper,
     SwperItem
   },
   methods: {
     changehandel (payload) {
-      // console.log(payload)
+      console.log(payload)
     }
   },
   created () {
-    getBanner().then((res) => {
-      console.log(res)
-    })
+    getBanner()
+      .then((res) => {
+        // 数据判断 code 值
+        if (res.code === 200) {
+          this.bannerList = res.info
+        } else {
+          alert(res.code + res.code_msg)
+        }
+      })
+      .catch((e) => {
+        alert('网络错误,请稍后尝试' + e)
+      })
   }
 }
 </script>
@@ -47,6 +67,11 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
+    .myswiper {
+      img {
+        width: 100%;
+      }
+    }
     .index-header {
       display: flex;
       height: 44px;

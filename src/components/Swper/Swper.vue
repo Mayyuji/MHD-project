@@ -38,14 +38,14 @@ export default {
         : false,
       pagination: {
         el: '.swiper-pagination'
-      },
-      on: {
-        slideChangeTransitionEnd: function () {
-          // console.log(this.activeIndex) //切换结束时，告诉我现在是第几个slide
-          // console.log(this.realIndex)
-          _this.$emit('change', this.realIndex)
-        }
       }
+      //on: {
+      //  slideChangeTransitionEnd: function () {
+      // console.log(this.activeIndex) //切换结束时，告诉我现在是第几个slide
+      // console.log(this.realIndex)
+      //   _this.$emit('change', this.realIndex)
+      //  }
+      //  }
     })
     /* eslint-enable */
   }
