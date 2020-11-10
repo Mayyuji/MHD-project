@@ -21,6 +21,7 @@
 
 <script>
 import { Swper, SwperItem } from '@/components/Swper'
+import { getBanner } from '@/api/cartoon'
 export default {
   name: 'Home',
   components: {
@@ -31,11 +32,17 @@ export default {
     changehandel (payload) {
       // console.log(payload)
     }
+  },
+  created () {
+    getBanner().then((res) => {
+      console.log(res)
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  @import '~@/assets/styles/mixins.scss';
   .page-home {
     display: flex;
     flex-direction: column;
@@ -47,6 +54,7 @@ export default {
       align-items: center;
       padding: 0 20px;
       box-sizing: border-box;
+      @include boder-bottom;
       .user-btn {
         width: 25px;
         height: 25px;
