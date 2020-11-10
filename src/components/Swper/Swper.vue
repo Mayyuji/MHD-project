@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-container">
+  <div class="swiper-container" ref="swper">
     <div class="swiper-wrapper">
       <slot></slot>
     </div>
@@ -25,7 +25,9 @@ export default {
   },
   mounted () {
     /* eslint-disable */
-    var mySwiper = new Swiper('.swiper-container', {
+    let _this = this
+    var mySwiper = new Swiper(this.$el, {
+      // this.$refs.swper
       loop: this.loop,
       autoplay: this.autoplay
         ? {
@@ -36,6 +38,13 @@ export default {
         : false,
       pagination: {
         el: '.swiper-pagination'
+      },
+      on: {
+        slideChangeTransitionEnd: function () {
+          // console.log(this.activeIndex) //切换结束时，告诉我现在是第几个slide
+          // console.log(this.realIndex)
+          _this.$emit('change', this.realIndex)
+        }
       }
     })
     /* eslint-enable */

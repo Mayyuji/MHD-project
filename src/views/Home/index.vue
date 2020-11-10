@@ -11,7 +11,7 @@
         <div class="header-search"></div>
       </a>
     </header>
-    <Swper :autoplay="2000" :loop="true">
+    <Swper :autoplay="2000" :loop="true" @change="changehandel">
       <SwperItem>1</SwperItem>
       <SwperItem>2</SwperItem>
       <SwperItem>3</SwperItem>
@@ -26,6 +26,11 @@ export default {
   components: {
     Swper,
     SwperItem
+  },
+  methods: {
+    changehandel (payload) {
+      // console.log(payload)
+    }
   }
 }
 </script>
