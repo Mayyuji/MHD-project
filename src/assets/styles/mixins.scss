@@ -17,3 +17,13 @@
     transform: scaleY(0.5);
   }
 }
+@mixin astyle {
+  a:active,
+  a:hover,
+  a:link,
+  a:visited {
+    outline: none;
+    text-decoration: none;
+    color: #333;
+  }
+}

@@ -16,3 +16,18 @@ export const getBanner = () => {
     }
   })
 }
+/**
+ * 获取轮播图的数据
+ * https://mhd.zhuishushenqi.com/comic_v2/customerview?apptype=8&appversion=1.0&channel=web-app&viewtype=1
+ */
+export const recommendList = () => {
+  return request({
+    url: '/api/comic_v2/customerview',
+    params: {
+      apptype: 8,
+      appversion: 1.0,
+      channel: 'web-app',
+      viewtype: 1
+    }
+  })
+}

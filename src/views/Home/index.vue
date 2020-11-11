@@ -1,62 +1,104 @@
 <template>
   <div class="page-home">
-    <header class="index-header">
-      <a href="mine.html?cpid=0">
-        <div class="header-user">
-          <div class="user-btn"></div>
+    <index-header></index-header>
+    <div class="index-main">
+      <Swper
+        :autoplay="3000"
+        :loop="true"
+        @change="changehandel"
+        class="myswiper"
+        v-if="bannerList.length > 0"
+      >
+        <SwperItem v-for="item in bannerList" :key="item.id">
+          <img :src="item.imageurl" :alt="item.name" />
+        </SwperItem>
+      </Swper>
+      <index-nav></index-nav>
+      <index-recommend
+        v-for="item in recommendlist"
+        :key="item.specialid"
+        :item="item"
+      ></index-recommend>
+      <div class="my-icp">
+        <a
+          class="record"
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011202006214"
+          target="_blank"
+        >
+          <img
+            class="img"
+            src="https://wechatapp.zhuishushenqi.com/mhd/201711/gongan.jpg"
+          />
+          <div>沪公网安备 31011202006214号</div>
+        </a>
+        <div class="licence">
+          增值电信业务经营许可证沪B2-20170022<br />网络文化经营许可证沪网文（2016）3206-227号<br />出版物经营许可证新出发沪批字第U7659号
         </div>
-      </a>
-      <div class="header-logo"></div>
-      <a href="search.html?cpid=0">
-        <div class="header-search"></div>
-      </a>
-    </header>
-    <Swper
-      :autoplay="3000"
-      :loop="true"
-      @change="changehandel"
-      class="myswiper"
-      v-if="bannerList.length > 0"
-    >
-      <SwperItem v-for="item in bannerList" :key="item.id">
-        <img :src="item.imageurl" :alt="item.name" />
-      </SwperItem>
-    </Swper>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { Swper, SwperItem } from '@/components/Swper'
-import { getBanner } from '@/api/cartoon'
+import { getBanner, recommendList } from '@/api/cartoon'
+import indexHeader from './components/indexHeader'
+import indexNav from './components/indexNav'
+import indexRecommend from './components/indexRecommend'
+
 export default {
   name: 'Home',
   data () {
     return {
-      bannerList: []
+      bannerList: [],
+      recommendlist: []
     }
   },
   components: {
     Swper,
-    SwperItem
+    SwperItem,
+    indexHeader,
+    indexNav,
+    indexRecommend
   },
   methods: {
     changehandel (payload) {
       console.log(payload)
+    },
+    getBanner () {
+      getBanner()
+        .then((res) => {
+          // 数据判断 code 值
+          if (res.code === 200) {
+            this.bannerList = res.info
+          } else {
+            alert(res.code + res.code_msg)
+          }
+        })
+        .catch((e) => {
+          alert('网络错误,请稍后尝试' + e)
+        })
+    },
+    recommendList () {
+      recommendList()
+        .then((res) => {
+          // 数据判断 code 值
+          if (res.code === 200) {
+            this.recommendlist = res.info
+          } else {
+            alert(res.code + res.code_msg)
+          }
+        })
+        .catch((e) => {
+          alert('网络错误,请稍后尝试' + e)
+        })
     }
   },
   created () {
-    getBanner()
-      .then((res) => {
-        // 数据判断 code 值
-        if (res.code === 200) {
-          this.bannerList = res.info
-        } else {
-          alert(res.code + res.code_msg)
-        }
-      })
-      .catch((e) => {
-        alert('网络错误,请稍后尝试' + e)
-      })
+    // 获取轮播图数据
+    this.getBanner()
+    // 获取首页推荐
+    this.recommendList()
   }
 }
 </script>
@@ -67,36 +109,34 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
+
+    .index-main {
+      flex: 1;
+      overflow-y: auto;
+    }
     .myswiper {
       img {
         width: 100%;
       }
     }
-    .index-header {
-      display: flex;
-      height: 44px;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      box-sizing: border-box;
-      @include boder-bottom;
-      .user-btn {
-        width: 25px;
-        height: 25px;
-        background: url(~@/assets/icon/user-btn.png) no-repeat;
-        background-size: 100%;
+    .my-icp {
+      padding: 0.26666667rem 0;
+      font-size: 0.32rem;
+      @include astyle;
+      .record {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
       }
-      .header-logo {
-        width: 92px;
-        height: 28px;
-        background: url(~@/assets/logo.png);
-        background-size: 100%;
-      }
-      .header-search {
-        width: 25px;
-        height: 25px;
-        background: url(~@/assets/icon/icon-search.png) no-repeat;
-        background-size: 100%;
+      .licence {
+        margin: 0.13333333rem 0 0;
+        text-align: center;
       }
     }
   }
