@@ -1,5 +1,8 @@
 <template>
-  <div class="page-home">其他</div>
+  <div class="page-home">
+    其他
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>

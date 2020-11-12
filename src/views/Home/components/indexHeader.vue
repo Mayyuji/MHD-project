@@ -1,12 +1,12 @@
 <template>
   <header class="index-header">
-    <a href="mine.html?cpid=0">
+    <a href="#/My">
       <div class="header-user">
         <div class="user-btn"></div>
       </div>
     </a>
     <div class="header-logo"></div>
-    <a href="search.html?cpid=0">
+    <a href="#/Search">
       <div class="header-search"></div>
     </a>
   </header>

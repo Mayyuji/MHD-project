@@ -1,24 +1,24 @@
 <template>
   <nav class="index-nav">
-    <a href="classify.html?cpid=0">
+    <a href="#/Classify">
       <div class="nav-item">
         <div class="nav-pic pic-1"></div>
         <p class="nav-text font-24">分类</p>
       </div>
     </a>
-    <a href="ranking.html?cpid=0">
+    <a href="#/Ranking">
       <div class="nav-item">
         <div class="nav-pic pic-2"></div>
         <p class="nav-text font-24">排行</p>
       </div>
     </a>
-    <a href="vip.html?cpid=0">
+    <a href="#/Vip">
       <div class="nav-item">
         <div class="nav-pic pic-3"></div>
         <p class="nav-text font-24">VIP专区</p>
       </div>
     </a>
-    <a href="history.html?cpid=0">
+    <a href="#/Other">
       <div class="nav-item">
         <div class="nav-pic pic-4"></div>
         <p class="nav-text font-24">历史</p>
