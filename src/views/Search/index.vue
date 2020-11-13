@@ -114,13 +114,13 @@ export default {
         : []
       // 判断之前是否存过 indexof find findIndex includes(直接判断元素是否在数组中存在)
       if (tmp.includes(keyword)) {
-        this.$router.push('/SearchResult')
+        this.$router.push('/SearchResult?name=' + keyword)
         return
       }
       tmp.push(keyword)
       // 存回
       window.localStorage.setItem('search', JSON.stringify(tmp))
-      this.$router.push('/SearchResult')
+      this.$router.push('/SearchResult?name=' + keyword)
     },
     delhistorysrarch () {
       this.historysrarch = []

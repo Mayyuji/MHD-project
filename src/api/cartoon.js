@@ -112,7 +112,7 @@ export const getHostsearch = () => {
   })
 }
 /**
- * 搜索结果列表
+ * 搜索待选列表
  * https://mhd.zhuishushenqi.com/comic_v2/searchindex?apptype=8&appversion=1.0&channel=web-app&name=hai&type=2
  */
 export const getsearchindex = name => {
@@ -124,6 +124,24 @@ export const getsearchindex = name => {
       channel: 'web-app',
       name,
       type: 2
+    }
+  })
+}
+/**
+ * 搜索结果列表
+ * https://mhd.zhuishushenqi.com/comic_v2/searchbookauthor?
+ * apptype=8&appversion=1.0&channel=web-app&name=hhh&type=2&pageno=1&pagesize=100
+ */
+export const getsearchbookauthor = name => {
+  return request({
+    url: '/api/comic_v2/searchbookauthor',
+    params: {
+      apptype: 8,
+      appversion: 1.0,
+      channel: 'web-app',
+      name,
+      type: 2,
+      pageno: 1
     }
   })
 }
