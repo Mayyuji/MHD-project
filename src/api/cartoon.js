@@ -96,3 +96,34 @@ export const getVipkList = () => {
     data: format({ pageno: 1, pagesize: 15, special: 892 })
   })
 }
+/**
+ * 大家都在搜
+ * https://mhd.zhuishushenqi.com/comic/hotsearch?apptype=8&appversion=1.0&channel=web-app&appType=8
+ */
+export const getHostsearch = () => {
+  return request({
+    url: '/api/comic/hotsearch',
+    params: {
+      apptype: 8,
+      appversion: 1.0,
+      channel: 'web-app',
+      appType: 8
+    }
+  })
+}
+/**
+ * 搜索结果列表
+ * https://mhd.zhuishushenqi.com/comic_v2/searchindex?apptype=8&appversion=1.0&channel=web-app&name=hai&type=2
+ */
+export const getsearchindex = name => {
+  return request({
+    url: '/api/comic_v2/searchindex',
+    params: {
+      apptype: 8,
+      appversion: 1.0,
+      channel: 'web-app',
+      name,
+      type: 2
+    }
+  })
+}

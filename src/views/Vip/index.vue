@@ -2,7 +2,7 @@
   <div class="page-vip">
     <normalheader titles="VIP专区"></normalheader>
     <div class="vip-main">
-      <cartoonslist></cartoonslist>
+      <cartoonslist :list="list"></cartoonslist>
     </div>
   </div>
 </template>
@@ -21,6 +21,19 @@ export default {
   data () {
     return {
       viplist: []
+    }
+  },
+  computed: {
+    list () {
+      return this.viplist.map((item) => {
+        return {
+          id: item.bookstore_id,
+          name: item.bigbook_name,
+          author: item.bigbook_author,
+          view: item.bigbookview,
+          coverurl: item.coverurl
+        }
+      })
     }
   },
   methods: {

@@ -66,32 +66,24 @@ export default {
       console.log(payload)
     },
     getBanner () {
-      getBanner()
-        .then((res) => {
-          // 数据判断 code 值
-          if (res.code === 200) {
-            this.bannerList = res.info
-          } else {
-            alert(res.code + res.code_msg)
-          }
-        })
-        .catch((e) => {
-          alert('网络错误,请稍后尝试' + e)
-        })
+      getBanner().then((res) => {
+        // 数据判断 code 值
+        if (res.code === 200) {
+          this.bannerList = res.info
+        } else {
+          alert(res.code + res.code_msg)
+        }
+      })
     },
     recommendList () {
-      recommendList()
-        .then((res) => {
-          // 数据判断 code 值
-          if (res.code === 200) {
-            this.recommendlist = res.info
-          } else {
-            alert(res.code + res.code_msg)
-          }
-        })
-        .catch((e) => {
-          alert('网络错误,请稍后尝试' + e)
-        })
+      recommendList().then((res) => {
+        // 数据判断 code 值
+        if (res.code === 200) {
+          this.recommendlist = res.info
+        } else {
+          alert(res.code + res.code_msg)
+        }
+      })
     }
   },
   created () {

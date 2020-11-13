@@ -3,7 +3,7 @@
     <normalheader titles="排行"></normalheader>
     <div class="ranking-main">
       <headertype :types="types" @listclick="listchange"></headertype>
-      <cartoonslist :list="ranklist" :isRanking="true"></cartoonslist>
+      <cartoonslist :list="list" :isRanking="true"></cartoonslist>
     </div>
   </div>
 </template>
