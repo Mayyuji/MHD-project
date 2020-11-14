@@ -1,5 +1,6 @@
 // axios 二次封装
 import axios from 'axios'
+import { Toast } from 'vant'
 const instance = axios.create({
   baseURL: 'http://localhost:8080',
   timeout: 5000
@@ -24,6 +25,7 @@ instance.interceptors.response.use(
   },
   function (error) {
     // 对响应错误做点什么
+    Toast.fail('网络异常')
     return Promise.reject(error)
   }
 )

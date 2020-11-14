@@ -12,6 +12,7 @@ import normalheader from '@/components/NormalHeader'
 import cartoonslist from '@/components/CartoonsList'
 import { getVipkList } from '@/api/cartoon'
 import { unformat } from '@/utils/apiHelp'
+
 export default {
   name: 'VIP',
   components: {

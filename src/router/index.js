@@ -1,18 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// 进度条
+import nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
 
-import Classify from '../views/Classify'
-import Home from '../views/Home'
-import Login from '../views/Login'
-import My from '../views/My'
-import Other from '../views/Other'
-import Favorite from '../views/Other/Favorite'
-import History from '../views/Other/History'
-import Ranking from '../views/Ranking'
-import Register from '../views/Register'
-import SearchResult from '../views/SearchResult'
-import Vip from '../views/Vip'
-import Search from '../views/Search'
+// import Classify from '../views/Classify'
+// 路由懒加载
+const Classify = () => import('../views/Classify')
+const Home = () => import('../views/Home')
+const Login = () => import('../views/Login')
+const My = () => import('../views/My')
+const Other = () => import('../views/Other')
+const Favorite = () => import('../views/Other/Favorite')
+const History = () => import('../views/Other/History')
+const Ranking = () => import('../views/Ranking')
+const Register = () => import('../views/Register')
+const SearchResult = () => import('../views/SearchResult')
+const Vip = () => import('../views/Vip')
+const Search = () => import('../views/Search')
+nprogress.configure({ showSpinner: false })
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -37,5 +43,14 @@ const router = new VueRouter({
     { path: '/Vip', component: Vip },
     { path: '/', redirect: '/Home' }
   ]
+})
+// 添加全局路由守卫  在这里我们去给每个页面 添加加载进图条
+router.beforeEach((to, from, next) => {
+  nprogress.start()
+  next()
+})
+
+router.afterEach((to, from) => {
+  nprogress.done()
 })
 export default router

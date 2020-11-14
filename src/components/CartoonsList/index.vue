@@ -1,26 +1,26 @@
 <template>
-  <section class="classify-list">
-    <div class="list-item" v-for="(item, index) in list" :key="item.id">
-      <div
-        class="item-pic"
-        :style="`background-image: url(${item.coverurl})`"
-      ></div>
-      <div class="item-info">
-        <div class="info-book font-30">{{ item.name }}</div>
-        <div class="info-author font-26">作者：{{ item.author }}</div>
-        <div class="info-fans font-26">人气：{{ item.view | formatYi }}</div>
-      </div>
-      <div
-        :class="`item-ranking-${index + 1 > 3 ? 'other' : index + 1}`"
-        v-show="isRanking"
-      >
-        {{ (index + 1) | indexFilter }}
+  <section class="classify-list" ref="wrapper">
+    <div>
+      <div class="list-item" v-for="(item, index) in list" :key="item.id">
+        <div class="item-pic" v-lazy:background-image="item.coverurl"></div>
+        <div class="item-info">
+          <div class="info-book font-30">{{ item.name }}</div>
+          <div class="info-author font-26">作者：{{ item.author }}</div>
+          <div class="info-fans font-26">人气：{{ item.view | formatYi }}</div>
+        </div>
+        <div
+          :class="`item-ranking-${index + 1 > 3 ? 'other' : index + 1}`"
+          v-show="isRanking"
+        >
+          {{ (index + 1) | indexFilter }}
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 export default {
   name: 'CartoonList',
   props: {
@@ -43,11 +43,25 @@ export default {
         return ''
       }
     }
+  },
+  mounted () {
+    /* eslint-disable */
+    setTimeout(() => {
+      this.bscroll = new BScroll(this.$refs.wrapper, {
+        scrollY: true,
+        click: true
+      })
+      console.log(this.bscroll)
+    }, 500)
+
+    /* eslint-enable */
   }
 }
 </script>
 <style lang="scss">
   .classify-list {
+    position: relative;
+    height: 100%;
     .list-item {
       box-sizing: border-box;
       display: flex;

@@ -10,7 +10,7 @@
         v-if="bannerList.length > 0"
       >
         <SwperItem v-for="item in bannerList" :key="item.id">
-          <img :src="item.imageurl" :alt="item.name" />
+          <img v-lazy="item.imageurl" :alt="item.name" />
         </SwperItem>
       </Swper>
       <index-nav></index-nav>
